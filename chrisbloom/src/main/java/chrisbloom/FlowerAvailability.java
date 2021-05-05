@@ -1,7 +1,6 @@
 
-package chrisbloom;
+ackage chrisbloom;
 
-import java.util.ArrayList;
 
 /**
  * shows user what kind of flower types available in the list(This feature is for user)
@@ -10,68 +9,32 @@ import java.util.ArrayList;
  *
  */
 public class FlowerAvailability {
-
+	
+	
 	/**
-	 * flowers are categorized into based on its nature(natural and artificial)
-	 * 
-	 * @param category
-	 * @param flowerKind
+	 * Checks the  availability of flower type in the list
+	 * @param check
 	 * @return
 	 */
-	public static boolean selectCategory(String category, String flowerKind) {
+	public static boolean selectCategory(String checkCategory , String checkType){
 
-		boolean valid = false;
-		//checks in the natural flower category if user mentioned for it
-		if (category .equalsIgnoreCase("Natural")) {
-			ArrayList<String> flowerTypes = new ArrayList<String>();
-			flowerTypes.add("Flowers");
-			flowerTypes.add("Floral Boquets");
-			flowerTypes.add("Floral Decoration");
-            
-			//returns true if the mention flower is available in the mentioned category else returns false
-			for (String flowerType : flowerTypes) {
-				if (flowerKind.equals(flowerType)) {
-					valid = true;
-					break;
+          
+			//returns true if the mentioned flower type is available in the mentioned category else returns false
+			for (Flower flowerType : FlowerManager.flowers) {
+				if ( flowerType.type.equalsIgnoreCase(checkType)&& flowerType.category.equalsIgnoreCase(checkCategory)) {
+					System.out.println(checkCategory + " " + checkType + " Available"+ " in price"+ " "+flowerType.price);
+					return true;
+					
 				}
 
 				else {
-					valid = false;
+					continue;
 				}
 			}
-			System.out.println(category + " " + flowerKind + " Available");
-			return valid;
-		}
-
-		//checks in the artificial flower category if user mentioned for it
-		else if (category .equalsIgnoreCase("Artificial")) {
-			ArrayList<String> flowerTypes = new ArrayList<String>();
-			flowerTypes.add("Flowers");
-			flowerTypes.add("Floral Boquets");
-			flowerTypes.add("Floral Decoration");
-
-			//returns true if the mention flower is available in the mentioned category else returns false
-			for (String flowerType : flowerTypes) {
-
-				if (flowerKind.equals(flowerType)) {
-					valid = true;
-					break;
-				}
-
-				else {
-					valid = false;
-				}
-
-			}
-			System.out.println(category + " " + flowerKind + " Available");
-			return valid;
-		}
-
-		//returns false if the mentioned category is not available
-		else {
-			System.out.println(category + " " + flowerKind + " Not Available");
+			System.out.println(checkCategory + " " + checkType + " Not  Available");
 			return false;
-
 		}
+	
+		
 	}
-}
+
